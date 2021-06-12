@@ -1,57 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Rubik Mono One' rel='stylesheet'>
-    <title>Web APIs Quiz</title>
-</head>
-<body>
-    <div class="container">
-        <div class="item" id="score">
-            <h3 id="correct">Correct:</h3>
-            <h3 id="incorrect">Incorrect:</h3>
-        </div>
-        <div class="item" id="status">
-            <h2 id="timeremaining">Time Remaining:</h2>
-            <h2 class="time" style="font-size: small;"></h2>
-            
-        </div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Web API Quiz</title>
+  </head>
+  <body>
+    
 
     <div id="title">
-        <h1>Coding Quiz</h1>
-        <p>Welcome to the Coding Quiz!<br><br> This quiz will track your progress and give you a good understanding of how much harder you need to study. <br> Good Luck!</p>
+      <h1>Coding Quiz</h1>
+      <p>Welcome to the Coding Quiz!<br /><br />This quiz will track your progress and give you a good understanding of how much harder you need to study. <br/>Good Luck!</p>
+      <button id="start" onclick="startGame()">START</button>
+    </div>
+    
+    <div class="timer-div" style="display: none;">
+      <div class="item" id="status"></div>
+        <h2 id="timeremaining">Time: </h2>
+        <h2 class="time" style="font-size: small"></h2>
+      </div>
     </div>
 
-    <div class="main" id="main">
-        <h2 id="question"></h2>
+    <div class=" main" id="game-section" style="display: none;">
 
-        <div class="button-group">
+      <h2 id="question"></h2>
+          <div class="button-group">
             <button class="answers" id="choice-1"></button>
             <button class="answers" id="choice-2"></button>
             <button class="answers" id="choice-3"></button>
             <button class="answers" id="choice-4"></button>
-        </div>
+          </div>
+      <h4 id="result"></h4>
 
-        
-        
-
-        <button id="start" onclick="startGame()">START GAME</button>
     </div>
 
-    <div>
+    <div class="end-game">
         <h3 id="game-over"></h3>
+        <h3 style="display:none">Final Score:</h3>
 
+    <!-- save score form/btn -->
     </div>
     
 
 
 
-
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
