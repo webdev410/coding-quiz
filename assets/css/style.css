@@ -2,16 +2,20 @@
 
 * {
     font-family: Arial, Helvetica, sans-serif;
-    
 }
 
 h1 {
     text-align: center;
 
 }
+#timeremaining{
+    font-size: small;
+    text-align: right;
+}
 
 h2 {
     text-align: center;
+    display: inline;
 }
 
 div {
@@ -19,5 +23,28 @@ div {
 }
 
 .answers {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
     display: none;
+}
+
+.container {
+    display: none;
+}
+
+.item {
+    flex: 1;
+    justify-content: space-around;
+}
+
+
+
+.button-group {
+    text-align: center;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
 }
