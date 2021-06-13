@@ -163,6 +163,11 @@ for (var i = 0; i < selectionBtn.length; i++) {
 
 function finalScore() {
     console.log("score", score);
-    finalScoreEl.setAttribute("style", "display: inline;")
+    finalScoreEl.setAttribute("style", "display: block;")
     finalScoreEl.textContent = score
 };
+
+
+function saveScore() {
+    console.log(score)
+}
