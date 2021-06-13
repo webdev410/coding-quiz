@@ -9,7 +9,7 @@ var timerDiv = document.querySelector(".timer-div");
 var gameSectionDiv = document.getElementById("game-section")
 var timeEl = document.querySelector(".time");
 var gameOverEl = document.getElementById("game-over");
-var secondsLeft = 500;
+var secondsLeft = 4500;
 var question = document.getElementById("question");
 var questionNumber = 0;
 var questionStorage = localStorage.getItem("questions");
@@ -23,11 +23,7 @@ var mainEl = document.getElementById("main");
 var result = document.getElementById("result")
 
 var resultsDiv = document.getElementById("end-game")
-var finalScore = document.getElementById("final-score")
-
-
-
-
+var finalScoreEl = document.getElementById("final-score")
 
 var allQuestions = [
     {
@@ -82,10 +78,9 @@ function hideTimer() {
     timerDiv.setAttribute("style", "display: none;");
 }
 
-function finalScore() {
-    console.log("score", score);
-    finalScore.setAttribute("style", "display: flex");
-}
+
+
+
 
 // when start button is pressed
 function startGame() {
@@ -93,6 +88,8 @@ function startGame() {
     showTimer();
     showGame();
     displayQuestion();
+    resultsDiv.setAttribute("style", "display: none;")
+    
 
     // timer
     var timerInterval = setInterval(function () {
@@ -106,7 +103,7 @@ function startGame() {
         }
        
     }, 1000);
-}
+};
 
 function displayQuestion() {
     if (questionNumber === allQuestions.length) {
@@ -121,12 +118,11 @@ function displayQuestion() {
         choice2.textContent = allQuestions[questionNumber].choices[1];
         choice3.textContent = allQuestions[questionNumber].choices[2];
         choice4.textContent = allQuestions[questionNumber].choices[3];
-
-}
-}
+}};
 
 // When Timer hits 0, display Game Over Message
 function gameOver() {
+    resultsDiv.setAttribute("style", "display: block;")
     timeEl.textContent = " ";
     var gameOverText = document.createElement("gameOver");
     gameOverText.textContent = "GAME OVER";
@@ -135,22 +131,20 @@ function gameOver() {
 
     hideQuestions()
     finalScore()
-
-}
+};
 
 function greatWork() {
+    hideQuestions()
+    resultsDiv.setAttribute("style", "display: block;")
+
     var greatWorkText = document.createElement("greatWork");
     greatWorkText.textContent = "GREAT WORK!";
     greatWorkText.setAttribute("style", "font-size: 50px; font-family: 'Press Start 2P', cursive;");
     gameOverEl.appendChild(greatWorkText);
 
-    hideQuestions()
+   
     finalScore()
-    
-
-}
-
-
+};
 
 for (var i = 0; i < selectionBtn.length; i++) {
     selectionBtn[i].addEventListener('click', function (event) {
@@ -161,14 +155,14 @@ for (var i = 0; i < selectionBtn.length; i++) {
         else {
             result.textContent = "Incorrect";
             secondsLeft = secondsLeft - 5;
-        }
-
-
+        };
         questionNumber++;
         displayQuestion()
+    });
+};
 
-
-    })
-
-}
-
+function finalScore() {
+    console.log("score", score);
+    finalScoreEl.setAttribute("style", "display: block;")
+    finalScoreEl.textContent = score
+};
