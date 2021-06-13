@@ -20,7 +20,7 @@ var choice2 = document.getElementById("choice-2");
 var choice3 = document.getElementById("choice-3");
 var choice4 = document.getElementById("choice-4");
 var mainEl = document.getElementById("main");
-var result = document.getElementById("result")
+var resultEl = document.getElementById("result")
 
 var resultsDiv = document.getElementById("end-game")
 var finalScoreEl = document.getElementById("final-score")
@@ -149,11 +149,11 @@ function greatWork() {
 for (var i = 0; i < selectionBtn.length; i++) {
     selectionBtn[i].addEventListener('click', function (event) {
         if (event.target.textContent === allQuestions[questionNumber].answer) {
-            result.textContent === "Correct";
+            resultEl.textContent = "Correct";
             score++
         }
-        else {
-            result.textContent = "Incorrect";
+        else if (event.target.textContent != allQuestions[questionNumber].answer) {
+            resultEl.textContent = "Incorrect";
             secondsLeft = secondsLeft - 5;
         };
         questionNumber++;
@@ -163,6 +163,6 @@ for (var i = 0; i < selectionBtn.length; i++) {
 
 function finalScore() {
     console.log("score", score);
-    finalScoreEl.setAttribute("style", "display: block;")
+    finalScoreEl.setAttribute("style", "display: inline;")
     finalScoreEl.textContent = score
 };
