@@ -5,148 +5,170 @@ var user = "Player 1";
 
 var startButton = document.getElementById('start');
 var titleDiv = document.getElementById('title');
-
 var timerDiv = document.querySelector(".timer-div");
 var gameSectionDiv = document.getElementById("game-section")
 var timeEl = document.querySelector(".time");
 var gameOverEl = document.getElementById("game-over");
-var secondsLeft = 3;
-
+var secondsLeft = 500;
 var question = document.getElementById("question");
+var questionNumber = 0;
+var questionStorage = localStorage.getItem("questions");
 
-var selectionBtn = document.querySelectorAll(".choices");
+var selectionBtn = document.querySelectorAll(".answers");
 var choice1 = document.getElementById("choice-1");
 var choice2 = document.getElementById("choice-2");
 var choice3 = document.getElementById("choice-3");
 var choice4 = document.getElementById("choice-4");
 var mainEl = document.getElementById("main");
+var result = document.getElementById("result")
 
-var correctAnswer = "";
+var resultsDiv = document.getElementById("end-game")
+var finalScore = document.getElementById("final-score")
 
-// start button & timer
-function startGame() {
-    // hide title div & start timer
+
+
+
+
+var allQuestions = [
+    {
+        question: "Commonly used data types DO NOT include:",
+        choices: ['strings', 'booleans', 'alerts', 'numbers'],
+        answer: "alerts"
+    },
+    {
+        question: "The condition in an if/else statement is enclosed within ____.",
+        choices: ['quotes', 'curly brackets', 'parentheses', 'square brackets'],
+        answer: "parentheses"
+    },
+    {
+        question: "Arrays in JavaScript can be used to store ____.",
+        choices: ['numbers & strings', 'other arrays', 'booleans', 'all of the above'],
+        answer: "alerts"
+    },
+    {
+        question: "String values must be enclosed within _____ when being assigned to variables.",
+        choices: ['commas', 'curly brackets', 'quotes', 'parentheses'],
+        answer: "quotes"
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        choices: ['JavaScript', 'Terminal/Bash', 'for loops', 'console.log'],
+        answer: "console.log"
+    },
+
+
+];
+
+function hideTitle() {
     titleDiv.setAttribute("style", "display: none;")
+}
+
+function hideQuestions() {
+    // hide questions and answers
+    gameSectionDiv.setAttribute("style", "display:none;")
+    //hide container
+    timerDiv.setAttribute("style", "display: none;")
+}
+
+function showGame() {
+    gameSectionDiv.setAttribute("style", "display: block;");
+}
+
+function showTimer() {
     timerDiv.setAttribute("style", "display: flex;");
-    // timer starts
+}
+
+function hideTimer() {
+    timerDiv.setAttribute("style", "display: none;");
+}
+
+function finalScore() {
+    console.log("score", score);
+    finalScore.setAttribute("style", "display: flex");
+}
+
+// when start button is pressed
+function startGame() {
+    hideTitle();
+    showTimer();
+    showGame();
+    displayQuestion();
+
+    // timer
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft + " seconds";
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             // Calls function to end game
-            sendMessage();
+            gameOver();
         }
+       
     }, 1000);
-    gameSectionDiv.setAttribute("style", "display: block;");
-    displayQuestion();
 }
 
 function displayQuestion() {
-    // display question #1
-    question.textContent = ("This is the first question.");
-    // display multiple choices for question 1
-    choice1.textContent = "Answer A"
-    choice2.textContent = "Answer B"
-    choice3.textContent = "Answer C"
-    choice4.textContent = "Answer D"
+    if (questionNumber === allQuestions.length) {
+        greatWork()
+    }
+    else {
+        // display question
+        question.textContent = allQuestions[questionNumber].question;
 
-    //logic for right or wrong answers
-    //store correct answer in a variable
-
-    // listen for which answer is selected
-    // answerButtonB.addEventListener("click", function(event) {
-    //     var answer = event.target;
-
-
-    //     console.log(correctAnswer)
-
-
-    //     if (answer.matches(correctAnswer))
-
-    // ;
-
-
-    // for loop to add incorrect answers to a variable
-    // combined array for all answers
-    // if correct answer is chosen, add 1 to Correct
-    // else add 1 to losses
-
-
-
-
+        // display multiple choices for question
+        choice1.textContent = allQuestions[questionNumber].choices[0];
+        choice2.textContent = allQuestions[questionNumber].choices[1];
+        choice3.textContent = allQuestions[questionNumber].choices[2];
+        choice4.textContent = allQuestions[questionNumber].choices[3];
 
 }
-
-
+}
 
 // When Timer hits 0, display Game Over Message
-function sendMessage() {
+function gameOver() {
     timeEl.textContent = " ";
     var gameOverText = document.createElement("gameOver");
     gameOverText.textContent = "GAME OVER";
     gameOverText.setAttribute("style", "font-size: 50px; font-family: 'Press Start 2P', cursive;");
     gameOverEl.appendChild(gameOverText);
 
-    // hide questions and answers
-    gameSectionDiv.setAttribute("style", "display:none;")
-    //hide container
-    timerDiv.setAttribute("style", "display: none;")
+    hideQuestions()
+    finalScore()
+
+}
+
+function greatWork() {
+    var greatWorkText = document.createElement("greatWork");
+    greatWorkText.textContent = "GREAT WORK!";
+    greatWorkText.setAttribute("style", "font-size: 50px; font-family: 'Press Start 2P', cursive;");
+    gameOverEl.appendChild(greatWorkText);
+
+    hideQuestions()
+    finalScore()
+    
 
 }
 
 
-function wrongAnswer() {
-    // add 1 to var incorrect
-    // subtract 10 seconds from the timer
 
+for (var i = 0; i < selectionBtn.length; i++) {
+    selectionBtn[i].addEventListener('click', function (event) {
+        if (event.target.textContent === allQuestions[questionNumber].answer) {
+            result.textContent === "Correct";
+            score++
+        }
+        else {
+            result.textContent = "Incorrect";
+            secondsLeft = secondsLeft - 5;
+        }
+
+
+        questionNumber++;
+        displayQuestion()
+
+
+    })
 
 }
 
-function correctAnswer() {
-    // add 1 to var correct
-}
-
-
-function gameOver() {
-
-}
-
-
-function saveScore() {
-    // save button
-    saveButton.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        var studentGrade = {
-            student: student.value,
-            grade: grade.value,
-            comment: comment.value.trim()
-        };
-
-        localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
-        renderMessage();
-
-    });
-
-    // add initials to score and save to localStorage
-    // display all scores sorted by correct answers
-}
- // if all questions are answered, run gameOver()
-    // question is generated
-    // answers are displayed by changing css display property to block
-
-
-    // save game in localStorage
-    // game = localStorage.setItem
-
-// Stores High Scores in localStorage
-
-        // getItem from local storage
-        // sort items by highscore 
-                // see javascript 19 Ins methods
-
-
-
-        // display scores
