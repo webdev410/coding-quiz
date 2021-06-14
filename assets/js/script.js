@@ -55,6 +55,21 @@ var allQuestions = [
 
 ];
 
+function playCorrect() {
+    var audio = new Audio('assets/sounds/correct.wav');
+    audio.play();
+  }
+
+function playWrong() {
+    var audio = new Audio('assets/sounds/wrong.wav');
+    audio.play();
+}
+
+function playGameOver() {
+    var audio = new Audio('assets/sounds/game-over.wav');
+    audio.play();
+}
+
 function hideTitle() {
     titleDiv.setAttribute("style", "display: none;")
 }
@@ -127,6 +142,7 @@ function gameOver() {
     gameOverEl.appendChild(gameOverText);
 
     hideQuestions()
+    playGameOver()
     finalScore()
 };
 
@@ -139,7 +155,7 @@ function greatWork() {
     greatWorkText.setAttribute("style", "font-size: 50px; font-family: 'Press Start 2P', cursive;");
     gameOverEl.appendChild(greatWorkText);
 
-   
+    playGameOver()
     finalScore()
 };
 
@@ -147,11 +163,13 @@ for (var i = 0; i < selectionBtn.length; i++) {
     selectionBtn[i].addEventListener('click', function (event) {
         if (event.target.textContent === allQuestions[questionNumber].answer) {
             resultEl.textContent = "Correct";
-            score++
+            score++;
+            playCorrect()
         }
         else if (event.target.textContent != allQuestions[questionNumber].answer) {
             resultEl.textContent = "Incorrect";
             secondsLeft = secondsLeft - 5;
+            playWrong();
         };
         questionNumber++;
         displayQuestion()
