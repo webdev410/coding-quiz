@@ -1,7 +1,7 @@
 var score = 0;
 
-var game = [];
-var user = "Player 1";
+var game = 0;
+var username = document.getElementById("username");
 
 var startButton = document.getElementById('start');
 var titleDiv = document.getElementById('title');
@@ -9,7 +9,7 @@ var timerDiv = document.querySelector(".timer-div");
 var gameSectionDiv = document.getElementById("game-section")
 var timeEl = document.querySelector(".time");
 var gameOverEl = document.getElementById("game-over");
-var secondsLeft = 4500;
+var secondsLeft = 60;
 var question = document.getElementById("question");
 var questionNumber = 0;
 var questionStorage = localStorage.getItem("questions");
@@ -77,9 +77,6 @@ function showTimer() {
 function hideTimer() {
     timerDiv.setAttribute("style", "display: none;");
 }
-
-
-
 
 
 // when start button is pressed
@@ -162,12 +159,38 @@ for (var i = 0; i < selectionBtn.length; i++) {
 };
 
 function finalScore() {
-    console.log("score", score);
+    
     finalScoreEl.setAttribute("style", "display: block;")
     finalScoreEl.textContent = score
 };
 
 
+
+
+
+// not working
 function saveScore() {
-    console.log(score)
+    
+    
+
+
+    game++
+
+    console.log("score", score);
+    console.log("username: ", username.value)
+    console.log("Game: ", game)
+
+    gameNum = game.value;
+   
+
+var user = {
+     gameNum: game,
+     initials: username.value.trim(),
+     newScore: score
+     
+};
+    localStorage.setItem("user", JSON.stringify(user));
+
 }
+
+
