@@ -9,10 +9,10 @@ var timerDiv = document.querySelector(".timer-div");
 var gameSectionDiv = document.getElementById("game-section")
 var timeEl = document.querySelector(".time");
 var gameOverEl = document.getElementById("game-over");
-var secondsLeft = 60;
+var secondsLeft = 6000;
 var question = document.getElementById("question");
 var questionNumber = 0;
-var questionStorage = localStorage.getItem("questions");
+// var questionStorage = localStorage.getItem("questions");
 
 var selectionBtn = document.querySelectorAll(".answers");
 var choice1 = document.getElementById("choice-1");
@@ -25,6 +25,8 @@ var resultEl = document.getElementById("result")
 var resultsDiv = document.getElementById("end-game")
 var finalScoreEl = document.getElementById("final-score")
 
+
+// all questions
 var allQuestions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -39,7 +41,7 @@ var allQuestions = [
     {
         question: "Arrays in JavaScript can be used to store ____.",
         choices: ['numbers & strings', 'other arrays', 'booleans', 'all of the above'],
-        answer: "alerts"
+        answer: "numbers & strings"
     },
     {
         question: "String values must be enclosed within _____ when being assigned to variables.",
@@ -55,10 +57,11 @@ var allQuestions = [
 
 ];
 
+// sounds
 function playCorrect() {
     var audio = new Audio('assets/sounds/correct.wav');
     audio.play();
-  }
+}
 
 function playWrong() {
     var audio = new Audio('assets/sounds/wrong.wav');
@@ -69,7 +72,7 @@ function playGameOver() {
     var audio = new Audio('assets/sounds/game-over.wav');
     audio.play();
 }
-
+// hide and show divs
 function hideTitle() {
     titleDiv.setAttribute("style", "display: none;")
 }
@@ -93,7 +96,6 @@ function hideTimer() {
     timerDiv.setAttribute("style", "display: none;");
 }
 
-
 // when start button is pressed
 function startGame() {
     hideTitle();
@@ -101,7 +103,7 @@ function startGame() {
     showGame();
     displayQuestion();
     resultsDiv.setAttribute("style", "display: none;")
-    
+
 
     // timer
     var timerInterval = setInterval(function () {
@@ -113,7 +115,7 @@ function startGame() {
             // Calls function to end game
             gameOver();
         }
-       
+
     }, 1000);
 };
 
@@ -130,7 +132,8 @@ function displayQuestion() {
         choice2.textContent = allQuestions[questionNumber].choices[1];
         choice3.textContent = allQuestions[questionNumber].choices[2];
         choice4.textContent = allQuestions[questionNumber].choices[3];
-}};
+    }
+};
 
 // When Timer hits 0, display Game Over Message
 function gameOver() {
@@ -159,6 +162,7 @@ function greatWork() {
     finalScore()
 };
 
+//loop through the questions and decide if it's a right or wrong answer
 for (var i = 0; i < selectionBtn.length; i++) {
     selectionBtn[i].addEventListener('click', function (event) {
         if (event.target.textContent === allQuestions[questionNumber].answer) {
@@ -176,22 +180,14 @@ for (var i = 0; i < selectionBtn.length; i++) {
     });
 };
 
+// display final score
 function finalScore() {
-    
     finalScoreEl.setAttribute("style", "display: block;")
     finalScoreEl.textContent = score
 };
 
-
-
-
-
-// not working
+// save score to local storage
 function saveScore() {
-    
-    
-
-
     game++
 
     console.log("score", score);
@@ -199,16 +195,23 @@ function saveScore() {
     console.log("Game: ", game)
 
     gameNum = game.value;
-   
 
-var user = {
-     gameNum: game,
-     initials: username.value.trim(),
-     newScore: score
-     
-};
+    var user = {
+        gameNum: game,
+        initials: username.value.trim(),
+        newScore: score
+    };
+
+    console.log("user: ", user),
+
+        localStorage.setItem("player-name", username.value);
+    localStorage.setItem("gameNum", game);
+    localStorage.setItem("score", score);
+
+    var highscoreList = localStorage.getItem("highscores");
+    highscoreList = JSON.parse(highscoreList);
+
+    console.log("highscorelist: ", highscoreList)
+
     localStorage.setItem("user", JSON.stringify(user));
-
-}
-
-
+};
