@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/highscore.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/highscore.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <title>High Scores | Web API Quiz</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div>
-        <h1>High Scores</h1>
-        
-        
-            <table> 
-                <thead>
-                    <tr id="tableHead">
-                        <th scope="col">Player Name</th>
-                        <th scope="col">Score</th>
-                    </tr>
-
-                </thead>
-                <tbody id="tbody">
-
-                </tbody>
-            </table>
-
+      <h1 class="game-font" id="highscores">High Scores</h1>
     </div>
-    <button id="clearScores">Clear High Scores</button>
-    <a href="index.html"><button>Play Again</button></a>
-    <script src="assets/js/scores.js"></script>
 
-</body>
+    <div>
+      <table style="width: 100%">
+        <tr>
+          <th>Player Name</th>
+          <th>Score</th>
+        </tr>
+        <tr>
+          <td id="player-name"></td>
+          <td id="player-score"></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <div>
+      <!-- clear scores button -->
+      <button id="clearScores">Clear High Scores</button>
+      <a href="index.html"><button>Play Again</button></a>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/scores.js"></script>
+  </body>
 </html>

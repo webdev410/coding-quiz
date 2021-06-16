@@ -12,8 +12,6 @@ var gameOverEl = document.getElementById("game-over");
 var secondsLeft = 6000;
 var question = document.getElementById("question");
 var questionNumber = 0;
-// var questionStorage = localStorage.getItem("questions");
-
 var selectionBtn = document.querySelectorAll(".answers");
 var choice1 = document.getElementById("choice-1");
 var choice2 = document.getElementById("choice-2");
@@ -24,6 +22,8 @@ var resultEl = document.getElementById("result")
 
 var resultsDiv = document.getElementById("end-game")
 var finalScoreEl = document.getElementById("final-score")
+
+
 
 
 // all questions
@@ -95,6 +95,8 @@ function showTimer() {
 function hideTimer() {
     timerDiv.setAttribute("style", "display: none;");
 }
+
+
 
 // when start button is pressed
 function startGame() {
@@ -190,7 +192,7 @@ function finalScore() {
 function saveScore() {
     game++
 
-    console.log("score", score);
+    console.log("score: ", score);
     console.log("username: ", username.value)
     console.log("Game: ", game)
 
@@ -202,16 +204,9 @@ function saveScore() {
         newScore: score
     };
 
-    console.log("user: ", user),
+ localStorage.setItem("user", JSON.stringify(user));
 
-        localStorage.setItem("player-name", username.value);
-    localStorage.setItem("gameNum", game);
-    localStorage.setItem("score", score);
+ renderScores()
 
-    var highscoreList = localStorage.getItem("highscores");
-    highscoreList = JSON.parse(highscoreList);
-
-    console.log("highscorelist: ", highscoreList)
-
-    localStorage.setItem("user", JSON.stringify(user));
 };
+
