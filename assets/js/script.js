@@ -23,9 +23,6 @@ var resultEl = document.getElementById("result")
 var resultsDiv = document.getElementById("end-game")
 var finalScoreEl = document.getElementById("final-score")
 
-
-
-
 // all questions
 var allQuestions = [
     {
