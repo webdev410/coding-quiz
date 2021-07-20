@@ -11,3 +11,11 @@ This is the fourth homework assignment from the Johns Hopkins Coding Bootcamp. T
 
 ![](assets/screenshots/screenshot 1.png)
 ![](assets/screenshots/Screenshot 2.png)
+
+##Technologies Used
+* HTML
+* CSS
+* Javascript
+
+##Developer Contact Info
+webdev410@gmail.com
